@@ -1,5 +1,6 @@
 import streamlit as st
 from shared.info.title import title
+import shared.info.dialog_boxes as info
         
 title()
 
@@ -134,3 +135,93 @@ elif section == "FAQ":
         Die KI übersetzt deine Anfrage automatisch
         in passende Metadaten-Filter.
         """)
+
+# Fusszeile
+
+# schönere Darstellung, nicht von streamlit unterstützt
+
+# st.markdown("""
+# <style>
+# .footer {
+#     position: fixed;
+#     bottom: 0;
+#     left: 0;
+#     width: 100%;
+#     background-color: #fafafa;
+#     border-top: 1px solid #eaeaea;
+#     padding: 10px 0;
+#     text-align: center;
+#     font-size: 0.9rem;
+#     z-index: 100;
+# }
+# .footer a {
+#     margin: 0 15px;
+#     color: #444;
+#     text-decoration: none;
+#     cursor: pointer;
+# }
+# .footer a:hover {
+#     text-decoration: underline;
+# }
+# </style>
+# """, unsafe_allow_html=True)
+
+# st.markdown("""
+# <div class="footer">
+#     <a onclick="window.parent.postMessage({type: 'impressum'}, '*')">
+#         Impressum
+#     </a>
+#     |
+#     <a onclick="window.parent.postMessage({type: 'datenschutz'}, '*')">
+#         Datenschutz
+#     </a>
+# </div>
+# """, unsafe_allow_html=True)
+
+
+st.markdown("<hr>", unsafe_allow_html=True)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col2:
+    if st.button("Impressum", key="impressum_btn"):
+        st.session_state.show_impressum = True
+
+with col3:
+    if st.button("Datenschutz", key="ds_btn"):
+        st.session_state.show_datenschutz = True
+
+
+@st.dialog("Impressum")
+def show_impressum_dialog():
+    st.markdown(f"""
+    **Angaben gemäß § 5 TMG**
+
+    Richard Fastenrath  
+    Birkenweg 7
+    85399 Hallbergmoos  
+    Deutschland  
+
+    E-Mail: {info.CONTACT_EMAIL}
+    """)
+
+if st.session_state.get("show_impressum"):
+    show_impressum_dialog()
+    st.session_state.show_impressum = False
+
+
+@st.dialog("Datenschutzerklärung")
+def show_datenschutz_dialog():
+    st.markdown("""
+    Diese Website verwendet ausschließlich technisch notwendige
+    Cookies zur Sitzungsverwaltung.
+
+    Es werden keine Tracking- oder Analyse-Tools eingesetzt.
+
+    Beim Besuch der Seite werden durch den Hosting-Anbieter
+    technisch notwendige Server-Logfiles erfasst.
+    """)
+
+if st.session_state.get("show_datenschutz"):
+    show_datenschutz_dialog()
+    st.session_state.show_datenschutz = False
