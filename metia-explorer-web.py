@@ -56,21 +56,45 @@ elif section == "Installation":
 
         `uf65/media-explorer`
 
-        Wähle die aktuelle Version und klicke auf **Pull**.
         """)
         st.image("assets/install_step2-1.png", use_container_width=True)
+        st.markdown("Wähle „uf65/media-explorer“ aus:")
+        st.image("assets/install_step2-2.png", use_container_width=True)
+        st.markdown("""
+                    In der Auswahlliste **Tags** ist automatisch die letzte Version eingestellt. Nimm diese. Theoretisch kannst du auch ältere Versionen laden, wenn dir an der neuesten irgendetwas nicht gefällt. Normalerweise brauchst du das aber nicht. Klicke auf **Pull**, um den Media-Explorer zu laden.
+Wenn du möchtest, kannst du auch gleich auf **Run** klicken, um den Media Explorer zu starten. Dann geht es weiter wie im Schritt 3.
+                    """)
+        st.image("assets/install_step2-3.png", use_container_width=True)
+        
 
     with st.expander("Schritt 3: Metia-Explorer starten"):
         st.markdown("""
-        Gehe zu **Images** im Docker Desktop.
-
+                    Gehe im Docker Desktop auf **Images**. Dort siehst du im **Local** Tab den Media Explorer, den du gerade heruntergeladen hast. Starte ihn mit einem Klick auf den **Play**-Knopf.
+        """)
+        st.image("assets/install_step3-1.png", use_container_width=True)
+        st.markdown("""
+                    Klappe die **Optional Setting** aus und gib ein:
+                    
         - Host port: `8501`
         - Host path: dein Medienverzeichnis
         - Container path: `/media`
 
         Danach mit **Run** starten.
         """)
-        st.image("assets/install_step3-1.png", use_container_width=True)
+        st.image("assets/install_step3-2.png", use_container_width=True)
+        st.markdown("""
+        Der Media Explorer läuft jetzt ganz sicher in einem Docker-Container, und du bekommst diese Anzeige:
+        """)
+        st.image("assets/install_step3-3.png", use_container_width=True)
+        st.markdown("""
+        Dass der Container im gezeigten Beispiel **cranky_dubinsky** heißt, hat nichts zu bedeuten. Bei dir kann irgendein anderer Name stehen, den sich die Docker Engine gerade ausgedacht hat.
+
+        Ein letzter Klick noch auf die angezeigte URL, und der Media Explorer öffnet sich im Browser:
+        """)
+        st.image("assets/install_step3-4.png", use_container_width=True)
+        st.markdown("""
+        Herzlichen Glückwunsch! Du hast den schwierigsten Teil geschafft. Beim nächsten Mal brauchst du nichts mehr zu installieren, sondern den Media Explorer nur noch aus dem Docker Desktop heraus zu starten. Weitere Hinweise zur Benutzung findest du in der Hilfe.
+        """)
 
 elif section == "FAQ":
 
@@ -90,7 +114,7 @@ elif section == "FAQ":
     with st.expander("Warum kann ich den Metia-Explorer nicht einfach herunterladen?"):
         st.markdown("""
         Der Metia-Explorer greift direkt auf dein lokales
-        Medienverzeichnis zu.
+        Medienverzeichnis zu und läuft auf Windows, Mac und Linux ohne jede Anpassung.
 
         Deshalb läuft er in einem Docker-Container
         auf deinem eigenen Rechner und nicht als
