@@ -122,6 +122,29 @@ elif section == "FAQ":
         klassische Web-App.
         """)
 
+    with st.expander("Wie aktiviere ich die KI-Funktionen?"):
+        st.markdown(f"""
+        Dazu musst du dir bei mindestens einem LLM-Provider einen API-Key einrichten.
+        Derzeit unterstützt der Metia-Explorer die folgenden LLM-Provider: Google, Mistral, OpenAI.
+
+        Deinen API-Key trägst du in ein **.env**-File im Medienverzeichnis ein:
+        
+        `# Global und optional`\n
+        `LLM_TEMPERATURE=1`\n
+        `# Mindestens ein Paar aus API_KEY und MODEL muss eingetragen sein`\n
+        `# OpenAI`\n
+        `OPENAI_API_KEY=sk-proj-...dein OpenAI API-Key...`\n
+        `OPENAI_MODEL=gpt-5-mini # empfohlen, aber kannst du natürlich ändern`\n
+        `# Google Gemini`\n
+        `GOOGLE_API_KEY=...dein Gemini API-Key...`\n
+        `GOOGLE_MODEL=gemini-2.5-flash`\n
+        `# Mistral`\n
+        `MISTRAL_API_KEY=...dein Mistral API-Key...`\n
+        `MISTRAL_MODEL=magistral-medium-latest`\n
+        
+        **Wenn du die KI-Funktionen lieber ohne Einrichtungsaufwand nutzen möchtest, lass es uns bitte wissen: {info.CONTACT_EMAIL}. Bei ausreichender Nachfrage würden wir eine Version mit integrierten KI-Funktionen publizieren. Diese müsste dann allerdings notgedrungen kostenpflichtig sein.**
+        """)
+
     with st.expander("Wie nutze ich die KI-Funktionen?"):
         st.markdown("""
         Die KI-Funktionen stehen im Chat-Modus zur Verfügung.
