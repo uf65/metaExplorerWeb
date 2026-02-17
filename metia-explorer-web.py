@@ -19,20 +19,27 @@ if section == "Home":
 
     st.markdown("""
     ## Willkommen beim Metia-Explorer
-
+    ### Lokales Foto- und Videomanagement mit KI-Unterstützung
+    
     Der **Metia-Explorer** ist eine lokale Anwendung für leistungsfähiges
     Foto- und Videomanagement.
+    
+    Hast du eine unüberschaubare Menge an Fotos und Videos auf deinem Rechner, die du nicht mehr richtig durchblickst?
+    Und möchtest du sie nicht in die Cloud hochladen, weil das zu teuer ist oder weil du findest, dass sie da nicht hingehören?
+    Dann bist du richtig hier! Der Metia-Explorer hilft dir dabei, deine Medien zu organisieren, zu durchsuchen und zu präsentieren - und das alles mit Unterstützung von Künstlicher Intelligenz (wenn du magst).
 
     ### Hauptfunktionen
 
-    - 🔎 Intelligente Attribut-Filter
+    - 🔎 Automatische Generierung von Metadaten
     - 🗺️ Kartenbasierte Geosuche
     - 🤖 KI-gestützte Abfragen per Chat
     - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
 
-    Der Metia-Explorer läuft bewusst lokal in einem Docker-Container.
+    Der **Metia-Explorer** läuft bewusst lokal in einem "Docker-Container".
     So bleiben deine Medien und Metadaten vollständig unter deiner Kontrolle.
+    
+    Und last but not least: Der **Metia-Explorer** ist kostenlos für private Nutzer. Das gilt sogar für die KI-Funktionen, solange du einen eigenen API-Key einrichtest und das kostenlose Kontingent des Providers nicht überschreitest.
     """)
 
 elif section == "Installation":
@@ -231,7 +238,7 @@ def show_impressum_dialog():
     **Angaben gemäß § 5 TMG**
 
     Richard Fastenrath  
-    Birkenweg 7
+    Birkenweg 7,
     85399 Hallbergmoos  
     Deutschland  
 

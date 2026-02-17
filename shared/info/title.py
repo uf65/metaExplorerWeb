@@ -3,7 +3,11 @@ import shared.info.dialog_boxes as info
 
 def title():
 
-    st.set_page_config(layout="wide")
+    st.set_page_config(
+        page_title="Metia-Explorer - Lokales Foto- & Video-Management mit KI",
+        page_icon="📸",
+        layout="wide"
+    )
 
     # UI Layout
     col_logo, col_title, col_help, col_about, col_license = st.columns([1, 5, 1, 1, 1])
