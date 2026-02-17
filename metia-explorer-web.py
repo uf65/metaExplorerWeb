@@ -89,9 +89,9 @@ Wenn du möchtest, kannst du auch gleich auf **Run** klicken, um den Metia-Explo
         """)
         st.image("assets/install_step3-3.png", use_container_width=True)
         st.markdown("""
-        Dass der Container im gezeigten Beispiel **cranky_dubinsky** heißt, hat nichts zu bedeuten. Bei dir kann irgendein anderer Name stehen, den sich die Docker Engine gerade ausgedacht hat.
+        Dass der Container im gezeigten Beispiel **xenodochial_nightingale** heißt, hat nichts zu bedeuten. Bei dir kann irgendein anderer Name stehen, den sich die Docker Engine gerade ausgedacht hat.
 
-        Ein letzter Klick noch auf die angezeigte URL, und der Metia-Explorer öffnet sich im Browser:
+        Ein letzter Klick noch auf die angezeigte **Local URL**, und der Metia-Explorer öffnet sich im Browser:
         """)
         st.image("assets/install_step3-4.png", use_container_width=True)
         st.markdown("""
