@@ -25,7 +25,7 @@ if section == "Home":
     Foto- und Videomanagement.
     
     Hast du eine unüberschaubare Menge an Fotos und Videos auf deinem Rechner, die du nicht mehr richtig durchblickst?
-    Und möchtest du sie nicht in die Cloud hochladen, weil das zu teuer ist oder weil du findest, dass sie da nicht hingehören?
+    Und du möchtest sie nicht in die Cloud hochladen, weil das zu teuer ist oder weil du findest, dass sie da nicht hingehören?
     Dann bist du richtig hier! Der Metia-Explorer hilft dir dabei, deine Medien zu organisieren, zu durchsuchen und zu präsentieren - und das alles mit Unterstützung von Künstlicher Intelligenz (wenn du magst).
 
     ### Hauptfunktionen
@@ -40,7 +40,12 @@ if section == "Home":
     So bleiben deine Medien und Metadaten vollständig unter deiner Kontrolle.
     
     Und last but not least: Der **Metia-Explorer** ist kostenlos für private Nutzer. Das gilt sogar für die KI-Funktionen, solange du einen eigenen API-Key einrichtest und das kostenlose Kontingent des Providers nicht überschreitest.
+    
+    So könnte der **Metia-Explorer** bei dir aussehen:
     """)
+    _, col2, _ = st.columns([1,4,1])
+    with col2:
+        st.image("assets/20260217_metia-explorer-screenshot.png", use_container_width=True)
 
 elif section == "Installation":
 
