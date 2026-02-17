@@ -9,9 +9,10 @@ st.markdown("<hr style='margin-top:0;'>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
     section = st.segmented_control(
-        "",
+        "section",
         options=["Home", "Installation", "FAQ"],
         default="Home",
+        label_visibility="collapsed"
     )
 
 if section == "Home":
@@ -27,7 +28,7 @@ if section == "Home":
     - 🔎 Intelligente Attribut-Filter
     - 🗺️ Kartenbasierte Geosuche
     - 🤖 KI-gestützte Abfragen per Chat
-    - 🔀 Kreuzfilterung mehrerer Metadaten
+    - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
 
     Der Metia-Explorer läuft bewusst lokal in einem Docker-Container.
@@ -48,7 +49,7 @@ elif section == "Installation":
         
         """)
         st.image("assets/install_step1-1.png", use_container_width=True)
-        st.markdown("Lade die Version, die zu deinem Rechner passt und installiere sie. Es kann sein, dass Docker dich fragt, ob du einen Docker-Account anlegen möchtest. Das kannst du machen, musst du aber nicht, um den Media Explorer zu nutzen.")
+        st.markdown("Lade die Version, die zu deinem Rechner passt und installiere sie. Es kann sein, dass Docker dich fragt, ob du einen Docker-Account anlegen möchtest. Das kannst du machen, musst du aber nicht, um den Metia-Explorer zu nutzen.")
 
     with st.expander("Schritt 2: Metia-Explorer laden"):
         st.markdown("""
@@ -62,19 +63,19 @@ elif section == "Installation":
         st.markdown("Wähle „uf65/media-explorer“ aus:")
         st.image("assets/install_step2-2.png", use_container_width=True)
         st.markdown("""
-                    In der Auswahlliste **Tags** ist automatisch die letzte Version eingestellt. Nimm diese. Theoretisch kannst du auch ältere Versionen laden, wenn dir an der neuesten irgendetwas nicht gefällt. Normalerweise brauchst du das aber nicht. Klicke auf **Pull**, um den Media-Explorer zu laden.
-Wenn du möchtest, kannst du auch gleich auf **Run** klicken, um den Media Explorer zu starten. Dann geht es weiter wie im Schritt 3.
+                    In der Auswahlliste **Tags** ist automatisch die letzte Version eingestellt. Nimm diese. Theoretisch kannst du auch ältere Versionen laden, wenn dir an der neuesten irgendetwas nicht gefällt. Normalerweise brauchst du das aber nicht. Klicke auf **Pull**, um den Metia-Explorer zu laden.
+Wenn du möchtest, kannst du auch gleich auf **Run** klicken, um den Metia-Explorer zu starten. Dann geht es weiter wie im Schritt 3.
                     """)
         st.image("assets/install_step2-3.png", use_container_width=True)
         
 
     with st.expander("Schritt 3: Metia-Explorer starten"):
         st.markdown("""
-                    Gehe im Docker Desktop auf **Images**. Dort siehst du im **Local** Tab den Media Explorer, den du gerade heruntergeladen hast. Starte ihn mit einem Klick auf den **Play**-Knopf.
+                    Gehe im Docker Desktop auf **Images**. Dort siehst du im **Local** Tab den Metia-Explorer, den du gerade heruntergeladen hast. Starte ihn mit einem Klick auf den **Play**-Knopf.
         """)
         st.image("assets/install_step3-1.png", use_container_width=True)
         st.markdown("""
-                    Klappe die **Optional Setting** aus und gib ein:
+                    Klappe die **Optional Settings** aus und gib ein:
                     
         - Host port: `8501`
         - Host path: dein Medienverzeichnis
@@ -84,17 +85,17 @@ Wenn du möchtest, kannst du auch gleich auf **Run** klicken, um den Media Explo
         """)
         st.image("assets/install_step3-2.png", use_container_width=True)
         st.markdown("""
-        Der Media Explorer läuft jetzt ganz sicher in einem Docker-Container, und du bekommst diese Anzeige:
+        Der Metia-Explorer läuft jetzt ganz sicher in einem Docker-Container, und du bekommst diese Anzeige:
         """)
         st.image("assets/install_step3-3.png", use_container_width=True)
         st.markdown("""
         Dass der Container im gezeigten Beispiel **cranky_dubinsky** heißt, hat nichts zu bedeuten. Bei dir kann irgendein anderer Name stehen, den sich die Docker Engine gerade ausgedacht hat.
 
-        Ein letzter Klick noch auf die angezeigte URL, und der Media Explorer öffnet sich im Browser:
+        Ein letzter Klick noch auf die angezeigte URL, und der Metia-Explorer öffnet sich im Browser:
         """)
         st.image("assets/install_step3-4.png", use_container_width=True)
         st.markdown("""
-        Herzlichen Glückwunsch! Du hast den schwierigsten Teil geschafft. Beim nächsten Mal brauchst du nichts mehr zu installieren, sondern den Media Explorer nur noch aus dem Docker Desktop heraus zu starten. Weitere Hinweise zur Benutzung findest du in der Hilfe.
+        Herzlichen Glückwunsch! Du hast den schwierigsten Teil geschafft. Beim nächsten Mal brauchst du nichts mehr zu installieren, sondern den Metia-Explorer nur noch aus dem Docker Desktop heraus zu starten. Weitere Hinweise zur Benutzung findest du in der Hilfe.
         """)
 
 elif section == "FAQ":
@@ -105,11 +106,11 @@ elif section == "FAQ":
         st.markdown("""
         Nein 😊
 
-        Der Name wurde bewusst geändert, um Verwechslungen
+        Der Name wurde bewusst so gewählt, um Verwechslungen
         mit anderen Produkten namens „Media Explorer“
         zu vermeiden.
 
-        „Metia“ verweist auf Metadaten – das Herzstück der Anwendung.
+        „Metia“ verweist außerdem auf Metadaten, die das Herzstück der Anwendung sind.
         """)
 
     with st.expander("Warum kann ich den Metia-Explorer nicht einfach herunterladen?"):
@@ -131,16 +132,16 @@ elif section == "FAQ":
         
         `# Global und optional`\n
         `LLM_TEMPERATURE=1`\n
-        `# Mindestens ein Paar aus API_KEY und MODEL muss eingetragen sein`\n
+        `# Mindestens ein ..._API_KEY muss eingetragen sein`\n
         `# OpenAI`\n
         `OPENAI_API_KEY=sk-proj-...dein OpenAI API-Key...`\n
-        `OPENAI_MODEL=gpt-5-mini # empfohlen, aber kannst du natürlich ändern`\n
+        `OPENAI_MODEL=gpt-5-mini # empfohlen, aber kannst du ändern oder weglassen`\n
         `# Google Gemini`\n
         `GOOGLE_API_KEY=...dein Gemini API-Key...`\n
-        `GOOGLE_MODEL=gemini-2.5-flash`\n
+        `GOOGLE_MODEL=gemini-2.5-flash # empfohlen`\n
         `# Mistral`\n
         `MISTRAL_API_KEY=...dein Mistral API-Key...`\n
-        `MISTRAL_MODEL=magistral-medium-latest`\n
+        `MISTRAL_MODEL=magistral-medium-latest # emfpohlen`\n
         
         **Wenn du die KI-Funktionen lieber ohne Einrichtungsaufwand nutzen möchtest, lass es uns bitte wissen: {info.CONTACT_EMAIL}. Bei ausreichender Nachfrage würden wir eine Version mit integrierten KI-Funktionen publizieren. Diese müsste dann allerdings notgedrungen kostenpflichtig sein.**
         """)
@@ -157,6 +158,15 @@ elif section == "FAQ":
 
         Die KI übersetzt deine Anfrage automatisch
         in passende Metadaten-Filter.
+        """)
+        
+    with st.expander("Ich kann die Kartendarstellung nicht finden."):
+        st.markdown("""
+        Die Kartendarstellung wird angezeigt, wenn du
+        
+        - selbst filterst (also die Filterung nicht der KI überlässt)
+        - mindestens die beiden Attribute **GPSLatitude** und **GPSLongitude** ausgewählt...
+        - ...und die Filter angewendet hast.
         """)
 
 # Fusszeile
