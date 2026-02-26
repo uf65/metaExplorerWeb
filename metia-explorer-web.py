@@ -32,7 +32,7 @@ if section == "Home":
 
     - 🔎 Automatische Generierung von Metadaten
     - 🗺️ Kartenbasierte Geosuche
-    - 🏷️ Automatische Verschlagwortung und ("Auto-Tagging") mit KI
+    - 🏷️ Automatische Verschlagwortung ("Auto-Tagging") mit KI
     - 🤖 KI-gestützte Abfragen per Chat
     - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
