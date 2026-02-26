@@ -36,7 +36,6 @@ if section == "Home":
     - 🤖 KI-gestützte Abfragen per Chat
     - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
-    - 🔎 Automatische Generierung von Metadaten
 
     Der **Metia-Explorer** läuft bewusst lokal in einem "Docker-Container".
     So bleiben deine Medien und Metadaten vollständig unter deiner Kontrolle.
