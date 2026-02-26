@@ -32,9 +32,11 @@ if section == "Home":
 
     - 🔎 Automatische Generierung von Metadaten
     - 🗺️ Kartenbasierte Geosuche
+    - 🏷️ Automatische Verschlagwortung und ("Auto-Tagging") mit KI
     - 🤖 KI-gestützte Abfragen per Chat
     - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
+    - 🔎 Automatische Generierung von Metadaten
 
     Der **Metia-Explorer** läuft bewusst lokal in einem "Docker-Container".
     So bleiben deine Medien und Metadaten vollständig unter deiner Kontrolle.
@@ -140,20 +142,24 @@ elif section == "FAQ":
         Dazu musst du dir bei mindestens einem LLM-Provider einen API-Key einrichten.
         Derzeit unterstützt der Metia-Explorer die folgenden LLM-Provider: Google, Mistral, OpenAI.
 
-        Deinen API-Key trägst du in ein **.env**-File im Medienverzeichnis ein:
-        
-        `# Global und optional`\n
+        Deinen API-Key trägst du in ein **.env**-File im Medienverzeichnis ein.
+        Du kannst dort auch mehrere API-Keys angeben, wenn du möchtest, und dann zur Laufzeit zwischen den Modellen wechseln.
+        Die Modelle <provider>_MODEL werden im Chat benutzt, die Modelle <provider>_MM_MODEL für das Auto-Tagging.
+
+        `# Global`\n
         `LLM_TEMPERATURE=1`\n
-        `# Mindestens ein ..._API_KEY muss eingetragen sein`\n
         `# OpenAI`\n
         `OPENAI_API_KEY=sk-proj-...dein OpenAI API-Key...`\n
-        `OPENAI_MODEL=gpt-5-mini # empfohlen, aber kannst du ändern oder weglassen`\n
+        `OPENAI_MODEL=gpt-5-mini`\n
+        `OPENAI_MM_MODEL=gpt-5-mini`\n
         `# Google Gemini`\n
         `GOOGLE_API_KEY=...dein Gemini API-Key...`\n
-        `GOOGLE_MODEL=gemini-2.5-flash # empfohlen`\n
+        `GOOGLE_MODEL=gemini-2.5-flash`
+        `GOOGLE_MM_MODEL=gemini-2.5-flash`
         `# Mistral`\n
         `MISTRAL_API_KEY=...dein Mistral API-Key...`\n
-        `MISTRAL_MODEL=magistral-medium-latest # emfpohlen`\n
+        `MISTRAL_MODEL=magistral-medium-latest`\n
+        `MISTRAL_MM_MODEL=pixtral-12b-2409`\n
         
         **Wenn du die KI-Funktionen lieber ohne Einrichtungsaufwand nutzen möchtest, lass es uns bitte wissen: {info.CONTACT_EMAIL}. Bei ausreichender Nachfrage würden wir eine Version mit integrierten KI-Funktionen publizieren. Diese müsste dann allerdings notgedrungen kostenpflichtig sein.**
         """)
@@ -181,6 +187,16 @@ elif section == "FAQ":
         - ...und die Filter angewendet hast.
         """)
 
+    with st.expander("Wie funktioniert Auto-Tagging?"):
+        st.markdown("""
+        Fürs Auto-Tagging sind 3 Schritte erforderlich:
+        1. Die KI-Funktionen aktivieren (siehe oben)
+        2. Nach dem Einlesen der Metadaten wählst du aus "Ich filtere selbst"
+        3. Du klickst auf einen der "Tag"-Knöpfe (entweder im Preview der Kartendarstellung oder in der Ergbnispräsentation)
+        Für einzelne Files hast du dann einen Knopf "Tags generieren", für die gesamte aktuelle Auswahl einen Knopf "Massen-Tagging starten".
+        Wenn dabei komplett neue Tags entstehen, die im gesamten Bestand noch nicht vorhanden sind, musst du noch einmal bestätigen, dass du sie wirklich hinzufügen willst, um die Anzahl Tags nicht unkontrolliert wachsen zu lassen.
+        """)
+        
 # Fusszeile
 
 # schönere Darstellung, nicht von streamlit unterstützt

@@ -30,7 +30,7 @@ def title():
                     Foto- und Videomanagement
                 </div>
                 <div style="font-weight:600; font-size:1.1rem; margin-top:4px;">
-                    ChatBot  •  Karte  •  Kreuzfilterung  •  Präsentation
+                    ChatBot  •  Karte  •  Auto-Tagging  •  Kreuzfilterung  •  Präsentation
                 </div>
                 <div style="color:#888; font-size:0.85rem; margin-top:8px;">
                     Version {info.VERSION}
