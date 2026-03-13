@@ -34,6 +34,7 @@ if section == "Home":
     - 🗺️ Kartenbasierte Geosuche
     - 🏷️ Automatische Verschlagwortung ("Auto-Tagging") mit KI
     - 🤖 KI-gestützte Abfragen per Chat
+    - 👯 Erkennung und Verwaltung von Duplikaten
     - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
 
@@ -194,6 +195,19 @@ elif section == "FAQ":
         3. Du klickst auf einen der "Tag"-Knöpfe (entweder im Preview der Kartendarstellung oder in der Ergbnispräsentation)
         Für einzelne Files hast du dann einen Knopf "Tags generieren", für die gesamte aktuelle Auswahl einen Knopf "Massen-Tagging starten".
         Wenn dabei komplett neue Tags entstehen, die im gesamten Bestand noch nicht vorhanden sind, musst du noch einmal bestätigen, dass du sie wirklich hinzufügen willst, um die Anzahl Tags nicht unkontrolliert wachsen zu lassen.
+        """)
+        
+    with st.expander("Erkennt der Metia-Explorer Duplikate?"):
+        st.markdown("""
+        Ja. Wähle dazu nach dem Einlesen der Metadaten "Ich filtere selbst". Zusammen mit den Ergebnissen erscheint dann ein zusätzlicher Button "Duplikate erkennen".
+        Einfach anklicken und den Anweisungen folgen.
+        """)
+
+    with st.expander("Was bedeuten die keep_if und move_if Tags bei der Duplikat-Erkennung?"):
+        st.markdown("""
+        Diese Tags sind optional. Vielleicht möchtest du Bilder in einem Ordner "Camera Uploads" eher behalten, Bilder im Ordner "WhatsApp Images" eher nicht.
+        Dann kannst du "Camera Uploads" mit keep_if und "WhatsApp Images" mit move_if markieren. Aber keine Sorge: bevor tatsächlich Bilder verschoben werden, kannst du dir
+        alles noch einmal ansehen und bestätigen oder verwerfen.
         """)
         
 # Fusszeile

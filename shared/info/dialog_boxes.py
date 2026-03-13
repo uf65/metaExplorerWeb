@@ -1,6 +1,6 @@
 import streamlit as st
 
-VERSION = "1.7 Beta"
+VERSION = "1.8 Beta"
 CONTACT_EMAIL = "[metia.explorer@gmx.net](mailto:metia.explorer@gmx.net)"
 
 
@@ -33,7 +33,7 @@ def show_about_dialog():
      
     st.divider()
     st.markdown(f"""
-    **Version {VERSION}** | Stand: Februar 2026
+    **Version {VERSION}** | Stand: März 2026
     """)
     if st.button("OK", use_container_width=True):
         st.rerun()
