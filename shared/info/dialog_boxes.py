@@ -1,6 +1,6 @@
 import streamlit as st
 
-VERSION = "1.8 Beta"
+VERSION = "1.9 Beta"
 CONTACT_EMAIL = "[metia.explorer@gmx.net](mailto:metia.explorer@gmx.net)"
 
 
@@ -53,7 +53,7 @@ def show_expert_setup_info():
     if st.button("Verstanden", use_container_width=True):
         st.rerun()
 
-@st.dialog("📖 Kurzanleitung: So nutzt du den Media-Explorer")
+@st.dialog("📖 Kurzanleitung: So nutzt du den Media-Explorer", width="large")
 def show_help_dialog():
     st.markdown("""
     Der **Media-Explorer** hilft dir, Ordnung in deine Bild- und Videoschätze zu bringen. 
