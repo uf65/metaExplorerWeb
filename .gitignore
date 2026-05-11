@@ -1,0 +1,11 @@
+Clickable_keywords.py
+.venv
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+.env
+.vscode/
+.idea/
+image-explore_meta.tar
+*.tar
