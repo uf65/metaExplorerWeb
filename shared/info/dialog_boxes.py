@@ -1,6 +1,6 @@
 import streamlit as st
 
-VERSION = "1.8 Beta"
+VERSION = "1.11 Beta"
 CONTACT_EMAIL = "[metia.explorer@gmx.net](mailto:metia.explorer@gmx.net)"
 
 
@@ -33,7 +33,7 @@ def show_about_dialog():
      
     st.divider()
     st.markdown(f"""
-    **Version {VERSION}** | Stand: März 2026
+    **Version {VERSION}** | Stand: Mai 2026
     """)
     if st.button("OK", use_container_width=True):
         st.rerun()
@@ -53,7 +53,7 @@ def show_expert_setup_info():
     if st.button("Verstanden", use_container_width=True):
         st.rerun()
 
-@st.dialog("📖 Kurzanleitung: So nutzt du den Media-Explorer")
+@st.dialog("📖 Kurzanleitung: So nutzt du den Media-Explorer", width="large")
 def show_help_dialog():
     st.markdown("""
     Der **Media-Explorer** hilft dir, Ordnung in deine Bild- und Videoschätze zu bringen. 
@@ -99,9 +99,9 @@ def show_help_dialog():
         st.rerun()
         
 
-@st.dialog("⚖️ Lizenzen & Haftung")
+@st.dialog("⚖️ Lizenzen & Haftung", width="medium")
 def show_license_dialog():
-    # --- NEU: Haftungsausschluss & Beta-Hinweis ---
+    # --- Haftungsausschluss & Beta-Hinweis ---
     st.warning("⚠️ **Wichtiger Hinweis (Beta-Stadium)**")
     st.write(f"""
     Diese Software befindet sich im **Beta-Teststadium**. Die Nutzung erfolgt ausschließlich zu Testzwecken 
@@ -116,23 +116,40 @@ def show_license_dialog():
 
     st.divider()
 
-    # --- Bestehende Inhalte ---
-    st.markdown("### OpenStreetMap")
+    # --- Kartendaten ---
+    st.markdown("### 🗺️ Kartendaten")
     st.write("""
-    Diese Anwendung nutzt Kartendaten von **OpenStreetMap**. 
-    Die Daten sind unter der [Open Database License (ODbL)](https://www.openstreetmap.org/copyright) verfügbar.
+    - **OpenStreetMap**: Kartendaten verfügbar unter der [Open Database License (ODbL)](https://www.openstreetmap.org/copyright).
+    - **Folium**: Karten-Rendering Framework (MIT License).
     """)
     st.info("© OpenStreetMap-Mitwirkende")
     
     st.divider()
     
-    st.markdown("### Weitere Software & Bibliotheken")
-    st.write("""
-    - **ExifTool**: Metadaten-Extraktion (Phil Harvey, Public Domain / GPL).
-    - **Streamlit**: User Interface Framework (Apache License 2.0).
-    - **Pandas/Pillow**: Daten- und Bildverarbeitung (BSD/MIT).
-    - **LLM-Konnektivität**: OpenAI / Google GenAI / Mistral AI API Integration.
-    """)
+    # --- Kern-Technologien ---
+    st.markdown("### 🛠️ Software & Bibliotheken")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Daten & Engine**")
+        st.write("""
+        - **DuckDB**: Datenbank (MIT).
+        - **ExifTool**: Metadaten (GPL).
+        - **Pandas**: Datenanalyse (BSD).
+        - **ImageHash**: Duplikaterkennung.
+        """)
+    
+    with col2:
+        st.markdown("**UI & Media**")
+        st.write("""
+        - **Streamlit**: UI Framework (Apache).
+        - **Pillow**: Bildverarbeitung (HPND).
+        - **MoviePy**: Videoverarbeitung (MIT).
+        - **RapidFuzz**: Fuzzy Search (MIT).
+        """)
+
+    st.markdown("**KI-Integrationen**")
+    st.caption("OpenAI, Google GenAI, Mistral AI, Anthropic")
 
     if st.button("Schließen", key="close_license", use_container_width=True):
         st.rerun()

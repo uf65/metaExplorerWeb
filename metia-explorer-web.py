@@ -210,6 +210,13 @@ elif section == "FAQ":
         alles noch einmal ansehen und bestätigen oder verwerfen.
         """)
         
+    with st.expander("Warum sollte ich in den Datenbank-Modus wechseln, wenn Metia-Explorer das anbietet?"):
+        st.markdown("""
+        Normalerweise hält der Metia-Explorer alle Metadaten im Hauptspeicher deines Rechners. Das wird bei mehreren 10.000 Medien irgendwann langsam oder aus Speichermangel sogar unmöglich.
+        In diesem Fall solltest du in den Datenbank-Modus wechseln. Dann werden die Metadaten in einr Cache-DB im Medienordner gehalten, und die Anzahl Medien, die du verwalten kannst, ist praktisch unbegrenzt.
+        Außerdem merkt sich der Metia-Explorer im Datenbank-Modus manche Dinge, die sonst mühsam neu berechnet werden müssten, z.B. die Attributtypen und die visuellen Hashes zum Erkennen von Dubletten. Das macht die Nutzung insgesamt komfortabler.
+        """)
+        
 # Fusszeile
 
 # schönere Darstellung, nicht von streamlit unterstützt
