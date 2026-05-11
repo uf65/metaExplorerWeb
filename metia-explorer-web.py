@@ -209,6 +209,13 @@ elif section == "FAQ":
         Dann kannst du "Camera Uploads" mit keep_if und "WhatsApp Images" mit move_if markieren. Aber keine Sorge: bevor tatsächlich Bilder verschoben werden, kannst du dir
         alles noch einmal ansehen und bestätigen oder verwerfen.
         """)
+
+    with st.expander("Ich möchte die KI-Funktionen lokal auf meinem Rechner nutzen, ohne einen API-Key einzurichten. Geht das?"):
+        st.markdown("""
+        Ja, das geht - aber nur auf einem leistungsfähigen Rechner. Du solltest 32GB Hauptspeicher und eine leistungsfähige GPU haben.
+        Dann kannst du dir mit Docker Desktop ein Modell laden wie z.B. ai/gemma3, und der Metia-Explorer wird es erkennen und dir zur Auswahl anbieten.
+        """)
+                    
         
     with st.expander("Warum sollte ich in den Datenbank-Modus wechseln, wenn Metia-Explorer das anbietet?"):
         st.markdown("""

@@ -1,0 +1,2 @@
+# Core App
+streamlit>=1.35.0,<2.0.0
