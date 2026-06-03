@@ -1,6 +1,10 @@
+from pathlib import Path
+import sys
+import subprocess
+from dotenv import load_dotenv
 import streamlit as st
 
-VERSION = "1.10 Beta"
+VERSION = "1.12 Beta"
 CONTACT_EMAIL = "[metia.explorer@gmx.net](mailto:metia.explorer@gmx.net)"
 
 
@@ -33,10 +37,75 @@ def show_about_dialog():
      
     st.divider()
     st.markdown(f"""
-    **Version {VERSION}** | Stand: April 2026
+    **Version {VERSION}** | Stand: Juni 2026
     """)
     if st.button("OK", use_container_width=True):
         st.rerun()
+
+def create_and_open_env_template():
+    """Erstellt eine .env-Datei im Basisverzeichnis basierend auf dem Template
+
+    und öffnet sie im Standard-Editor des Betriebssystems.
+    """
+    base_dir = st.session_state.get("active_base_dir")
+    if not base_dir:
+        st.error("Kein aktives Basisverzeichnis ausgewählt.")
+        return
+
+    env_path = Path(base_dir) / ".env"
+    
+    # Template-Inhalt festlegen
+    template_content = """# KI-Konfigurationen für das Tagging-System
+# Bitte fülle mindestens einen API-Schlüssel aus, um die KI-Integration zu aktivieren.
+
+# Global
+LLM_TEMPERATURE=1
+
+# OpenAI
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_MODEL=gpt-5-mini
+OPENAI_MM_MODEL=gpt-5-mini
+
+# Google Gemini
+GOOGLE_API_KEY=your_google_api_key
+GOOGLE_MODEL=gemini-2.5-flash
+GOOGLE_MM_MODEL=gemini-2.5-flash
+
+# Mistral
+MISTRAL_API_KEY=your_mistral_api_key
+MISTRAL_MODEL=magistral-medium-latest
+MISTRAL_MM_MODEL=ministral-14b-2512
+
+# Anthropic
+ANTHROPIC_API_KEY=your_anthropic_api_key
+ANTHROPIC_MODEL=claude-haiku-4-5-20251001
+ANTHROPIC_MM_MODEL=claude-haiku-4-5-20251001
+"""
+
+    try:
+        # 1. Datei schreiben (falls sie noch nicht existiert, um Überschreiben zu verhindern)
+        if env_path.exists():
+            st.warning(f"Eine `.env`-Datei existiert bereits unter `{env_path}`. Öffne bestehende Datei...")
+        else:
+            env_path.write_text(template_content, encoding="utf-8")
+            st.toast("`.env`-Vorlage erfolgreich erstellt!")
+
+        # 2. Plattformabhängig im Editor öffnen (Windows: Notepad, Mac: TextEdit, Linux: xdg-open)
+        if sys.platform.startswith('win'):
+            # "start" blockiert Streamlit nicht, "notepad.exe" stellt sicher, dass es der Texteditor ist
+            subprocess.Popen(["notepad.exe", str(env_path)])
+        elif sys.platform == 'darwin':
+            # -e öffnet es spezifisch in TextEdit
+            subprocess.Popen(["open", "-e", str(env_path)])
+        else:
+            # Linux-Fallback (öffnet den registrierten Texteditor)
+            subprocess.Popen(["xdg-open", str(env_path)])
+            
+        st.success(f"Die Datei wurde im Texteditor geöffnet. Bitte Keys eintragen und speichern!")
+
+    except Exception as e:
+        st.error(f"Fehler beim Erstellen/Öffnen der Datei: {e}")
+
         
 @st.dialog("KI-Expertenmodus einrichten")
 def show_expert_setup_info():
@@ -50,8 +119,18 @@ def show_expert_setup_info():
     
     Viel Spaß!
     """)
-    if st.button("Verstanden", use_container_width=True):
-        st.rerun()
+    col_env, col_reload, col_ok = st.columns([1, 1, 1])
+    with col_env:
+        if st.button("📝 `.env`-Vorlage erstellen & im Editor öffnen", use_container_width=True, key="btn_create_env_helper", type="primary"):
+            create_and_open_env_template()
+            st.rerun()
+    with col_reload:
+        if st.button("🔄 `.env`-Datei neu laden. Ich habe meinen API-Key gerade eingetragen.", use_container_width=True, key="btn_reload_env"):
+            load_dotenv(dotenv_path=Path(st.session_state.active_base_dir) / ".env", override=True)
+            st.rerun()
+    with col_ok:
+        if st.button("Verstanden. Mache ich später.", use_container_width=True):
+            st.rerun()
 
 @st.dialog("📖 Kurzanleitung: So nutzt du den Media-Explorer", width="large")
 def show_help_dialog():
@@ -99,9 +178,9 @@ def show_help_dialog():
         st.rerun()
         
 
-@st.dialog("⚖️ Lizenzen & Haftung")
+@st.dialog("⚖️ Lizenzen & Haftung", width="medium")
 def show_license_dialog():
-    # --- NEU: Haftungsausschluss & Beta-Hinweis ---
+    # --- Haftungsausschluss & Beta-Hinweis ---
     st.warning("⚠️ **Wichtiger Hinweis (Beta-Stadium)**")
     st.write(f"""
     Diese Software befindet sich im **Beta-Teststadium**. Die Nutzung erfolgt ausschließlich zu Testzwecken 
@@ -116,23 +195,40 @@ def show_license_dialog():
 
     st.divider()
 
-    # --- Bestehende Inhalte ---
-    st.markdown("### OpenStreetMap")
+    # --- Kartendaten ---
+    st.markdown("### 🗺️ Kartendaten")
     st.write("""
-    Diese Anwendung nutzt Kartendaten von **OpenStreetMap**. 
-    Die Daten sind unter der [Open Database License (ODbL)](https://www.openstreetmap.org/copyright) verfügbar.
+    - **OpenStreetMap**: Kartendaten verfügbar unter der [Open Database License (ODbL)](https://www.openstreetmap.org/copyright).
+    - **Folium**: Karten-Rendering Framework (MIT License).
     """)
     st.info("© OpenStreetMap-Mitwirkende")
     
     st.divider()
     
-    st.markdown("### Weitere Software & Bibliotheken")
-    st.write("""
-    - **ExifTool**: Metadaten-Extraktion (Phil Harvey, Public Domain / GPL).
-    - **Streamlit**: User Interface Framework (Apache License 2.0).
-    - **Pandas/Pillow**: Daten- und Bildverarbeitung (BSD/MIT).
-    - **LLM-Konnektivität**: OpenAI / Google GenAI / Mistral AI API Integration.
-    """)
+    # --- Kern-Technologien ---
+    st.markdown("### 🛠️ Software & Bibliotheken")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Daten & Engine**")
+        st.write("""
+        - **DuckDB**: Datenbank (MIT).
+        - **ExifTool**: Metadaten (GPL).
+        - **Pandas**: Datenanalyse (BSD).
+        - **ImageHash**: Duplikaterkennung.
+        """)
+    
+    with col2:
+        st.markdown("**UI & Media**")
+        st.write("""
+        - **Streamlit**: UI Framework (Apache).
+        - **Pillow**: Bildverarbeitung (HPND).
+        - **MoviePy**: Videoverarbeitung (MIT).
+        - **RapidFuzz**: Fuzzy Search (MIT).
+        """)
+
+    st.markdown("**KI-Integrationen**")
+    st.caption("OpenAI, Google GenAI, Mistral AI, Anthropic")
 
     if st.button("Schließen", key="close_license", use_container_width=True):
         st.rerun()
