@@ -215,6 +215,14 @@ elif section == "FAQ":
         Ja, das geht - aber nur auf einem leistungsfähigen Rechner. Du solltest 32GB Hauptspeicher und eine leistungsfähige GPU haben.
         Dann kannst du dir mit Docker Desktop ein Modell laden wie z.B. ai/gemma3, und der Metia-Explorer wird es erkennen und dir zur Auswahl anbieten.
         """)
+
+    with st.expander("Warum sollte ich in den Datenbank-Modus wechseln, wenn Metia-Explorer das anbietet?"):
+        st.markdown("""
+        Normalerweise hält der Metia-Explorer alle Metadaten im Hauptspeicher deines Rechners. Das wird bei mehreren 10.000 Medien irgendwann langsam oder aus Speichermangel sogar unmöglich.
+        In diesem Fall solltest du in den Datenbank-Modus wechseln. Dann werden die Metadaten in einr Cache-DB im Medienordner gehalten, und die Anzahl Medien, die du verwalten kannst, ist praktisch unbegrenzt.
+        Außerdem merkt sich der Metia-Explorer im Datenbank-Modus manche Dinge, die sonst mühsam neu berechnet werden müssten, z.B. die Attributtypen und die visuellen Hashes zum Erkennen von Dubletten. Das macht die Nutzung insgesamt komfortabler.
+        """)
+
                     
 # Fusszeile
 
