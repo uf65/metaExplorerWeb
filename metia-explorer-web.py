@@ -10,7 +10,7 @@ col1, col2, col3 = st.columns([1,2,1])
 with col2:
     section = st.segmented_control(
         "section",
-        options=["Home", "Installation", "FAQ"],
+        options=["Home", "Installation", "FAQ", "YouTube"],
         default="Home",
         label_visibility="collapsed"
     )
@@ -37,6 +37,7 @@ if section == "Home":
     - 👯 Erkennung und Verwaltung von Duplikaten
     - 🔀 Kreuzfilterung beliebiger Foto-Attribute
     - 🎞️ Präsentationsmodus für Bild- und Videoserien
+    - 🧑 Automatische Gesichtserkennung
 
     Der **Metia-Explorer** läuft bewusst lokal in einem "Docker-Container".
     So bleiben deine Medien und Metadaten vollständig unter deiner Kontrolle.
@@ -219,11 +220,40 @@ elif section == "FAQ":
     with st.expander("Warum sollte ich in den Datenbank-Modus wechseln, wenn Metia-Explorer das anbietet?"):
         st.markdown("""
         Normalerweise hält der Metia-Explorer alle Metadaten im Hauptspeicher deines Rechners. Das wird bei mehreren 10.000 Medien irgendwann langsam oder aus Speichermangel sogar unmöglich.
-        In diesem Fall solltest du in den Datenbank-Modus wechseln. Dann werden die Metadaten in einr Cache-DB im Medienordner gehalten, und die Anzahl Medien, die du verwalten kannst, ist praktisch unbegrenzt.
+        In diesem Fall solltest du in den Datenbank-Modus wechseln. Dann werden die Metadaten in einer Cache-DB im Medienordner gehalten, und die Anzahl Medien, die du verwalten kannst, ist praktisch unbegrenzt.
         Außerdem merkt sich der Metia-Explorer im Datenbank-Modus manche Dinge, die sonst mühsam neu berechnet werden müssten, z.B. die Attributtypen und die visuellen Hashes zum Erkennen von Dubletten. Das macht die Nutzung insgesamt komfortabler.
         """)
 
-                    
+    with st.expander("Wie wollte ich vorgehen, um die Gesichtserkennung zu verwenden?"):
+        st.markdown("""
+        Beginne mit dem Knopf 🧑 links neben einem Foto, das gerade angezeigt wird. Gesichter auf dem Foto werden automatisch erkannt, und du kannst die Personen benennen.
+        Anschließend erscheinen automatisch über den angezeigten Fotos drei weitere Knöpfe, mit denen du die Gesichtserkennung auf große Mengen an Fotos anwenden, Personen
+        umbenennen, löschen oder eine Galerie bekannter Personen anzeigen lassen kannst. Und natürlich kennt ab diesem Zeitpunkt auch der Chatbot die erkannten Personen und kann sie in deinen Anfragen berücksichtigen.
+        """)
+                
+elif section == "YouTube":
+    st.markdown("## YouTube-Anleitungen")
+    st.write("Wähle ein Video aus, um es abzuspielen:")
+
+    # Definition der Videos (Titel und zugehöriger Link)
+    videos = {
+        "Kennenlernen und installieren": "https://www.youtube.com/watch?v=X4paln_UvMg&t=5s",
+        "Medienarchiv erzeugen und filtern": "https://www.youtube.com/watch?v=682IsU-ZGN4",
+        "Expertenmodus einrichten": "https://www.youtube.com/watch?v=UukUwAPVQVo"
+    }
+
+    # Erstellt ein Auswahlmenü (Radio-Buttons oder Selectbox) für die Videos
+    video_auswahl = st.radio(
+        "Verfügbare Videos:",
+        options=list(videos.keys()),
+        label_visibility="collapsed"
+    )
+
+    # Zeigt das ausgewählte Video an und macht es abspielbar
+    if video_auswahl:
+        video_url = videos[video_auswahl]
+        st.video(video_url)
+            
 # Fusszeile
 
 # schönere Darstellung, nicht von streamlit unterstützt
